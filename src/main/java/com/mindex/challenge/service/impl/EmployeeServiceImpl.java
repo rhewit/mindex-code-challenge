@@ -44,6 +44,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    /* Creates a new temporary reporting structure based on an employee and their direct reports using the employee's
+     * ID, called by the employee controller
+     */
     public ReportingStructure report(String id) {
         LOG.debug("Creating reporting structure of employee with id [{}]", id);
 
