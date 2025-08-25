@@ -35,7 +35,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/report/{id}")
-    /* This function receives an employee id from the URL in order to create a Reporting Structure*/
+    /* This function receives an employee id from the URL in order to create a Reporting Structure
+     * Syntax: curl http://localhost:8080/report/{id}
+    */
     public ReportingStructure report(@PathVariable String id) {
         LOG.debug("Received reporting structure get request for id [{}]", id);
         
