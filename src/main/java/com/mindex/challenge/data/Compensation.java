@@ -1,12 +1,20 @@
 package com.mindex.challenge.data;
 
 public class Compensation {
+    private String employeeId;
     private int salary;
     private String effectiveDate;
-    private Employee employee;
+    
+    
+    public Compensation() {
+    }
 
-    public Compensation(Employee employee) {
-        this.employee = employee;
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
     public int getSalary() {
