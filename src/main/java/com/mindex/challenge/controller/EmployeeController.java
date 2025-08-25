@@ -34,7 +34,7 @@ public class EmployeeController {
         return employeeService.read(id);
     }
 
-    @GetMapping("/employee/{id}/report")
+    @GetMapping("/report/{id}")
     public ReportingStructure report(@PathVariable String id) {
         LOG.debug("Received reporting structure get request for id [{}]", id);
         

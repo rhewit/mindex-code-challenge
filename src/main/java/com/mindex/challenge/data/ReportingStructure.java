@@ -2,6 +2,8 @@ package com.mindex.challenge.data;
 
 import java.util.List;
 
+import com.mindex.challenge.dao.EmployeeRepository;
+
 public class ReportingStructure {
     private Employee employee;
     private int numberOfReports;
@@ -9,7 +11,6 @@ public class ReportingStructure {
 
     public ReportingStructure(Employee employee) {
         this.employee = employee;
-        this.numberOfReports = reportCounter(employee);
     }
 
     public Employee getEmployee() {
@@ -24,16 +25,20 @@ public class ReportingStructure {
         return numberOfReports;
     }
 
-    public void setNumberOfReports(Employee employee) {
-        this.numberOfReports = reportCounter(employee);
+    public void setNumberOfReports(Employee employee, EmployeeRepository employeeRepository) {
+        this.numberOfReports = reportCounter(employee, employeeRepository);
     }
 
-    public int reportCounter(Employee employee) {
+    public int reportCounter(Employee employee, EmployeeRepository employeeRepository) {
         List<Employee> directReports = employee.getDirectReports();
-        int numDirect = directReports.size();
-        int numNonDirect = 0;
-        for (int i = 0; i < numDirect; i++) {
-            numNonDirect += reportCounter(directReports.get(i));
+        int numNonDirect = 0; int numDirect = 0;
+        if (directReports != null) {
+            numDirect = directReports.size();
+            for (int i = 0; i < numDirect; i++) {
+                String temp = directReports.get(i).getEmployeeId();
+                Employee reportingEmployee = employeeRepository.findByEmployeeId(temp);
+                numNonDirect += reportCounter(reportingEmployee, employeeRepository);
+            }
         }
         return numDirect + numNonDirect;
     }

@@ -5,7 +5,8 @@ public class Compensation {
     private String effectiveDate;
     private Employee employee;
 
-    public Compensation() {
+    public Compensation(Employee employee) {
+        this.employee = employee;
     }
 
     public int getSalary() {
